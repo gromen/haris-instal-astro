@@ -2,21 +2,21 @@
 const currentYear = new Date().getFullYear();
 
 const navLinks = [
-  { href: '/', label: 'Strona główna' },
-  { href: '/#uslugi', label: 'Usługi' },
-  { href: '/#dlaczego-my', label: 'Dlaczego my' },
-  { href: '/#opinie', label: 'Opinie' },
-  { href: '/#faq', label: 'FAQ' },
-  { href: '/kontakt', label: 'Kontakt' },
+  { href: "/", label: "Strona główna" },
+  { href: "/#uslugi", label: "Usługi" },
+  { href: "/#dlaczego-my", label: "Dlaczego my" },
+  { href: "/#opinie", label: "Opinie" },
+  { href: "/#faq", label: "FAQ" },
+  { href: "/kontakt", label: "Kontakt" },
 ];
 
 const services = [
-  'Instalacje wodne',
-  'Instalacje gazowe',
-  'Ogrzewanie',
-  'Naprawy i awarie',
-  'Udrażnianie rur',
-  'Montaż armatury',
+  "Instalacje wodne",
+  "Instalacje gazowe",
+  "Ogrzewanie",
+  "Naprawy i awarie",
+  "Udrażnianie rur",
+  "Montaż armatury",
 ];
 ---
 
@@ -31,12 +31,10 @@ const services = [
             alt="Haris-Instal Logo"
             class="h-10 w-auto"
           />
-          <span class="text-xl font-heading font-bold text-gradient">
-            Haris-Instal
-          </span>
         </a>
         <p class="text-[var(--text-secondary)] text-sm mb-6">
-          Profesjonalne usługi hydrauliczne w Sosnowcu i okolicach. Działamy szybko, skutecznie i w uczciwych cenach.
+          Profesjonalne usługi hydrauliczne w Ostrowi Mazowieckiej i okolicach.
+          Działamy szybko, skutecznie i w uczciwych cenach.
         </p>
         <!-- Social links placeholder -->
         <div class="flex gap-4">
@@ -46,7 +44,9 @@ const services = [
             aria-label="Facebook"
           >
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"/>
+              <path
+                d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"
+              ></path>
             </svg>
           </a>
         </div>
@@ -78,7 +78,9 @@ const services = [
           {
             services.map((service) => (
               <li>
-                <span class="text-[var(--text-secondary)] text-sm">{service}</span>
+                <span class="text-[var(--text-secondary)] text-sm">
+                  {service}
+                </span>
               </li>
             ))
           }
@@ -91,13 +93,23 @@ const services = [
         <ul class="space-y-4">
           <li>
             <a
-              href="tel:+48123456789"
+              href="tel:+48791334999"
               class="flex items-center gap-3 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200"
             >
-              <svg class="w-5 h-5 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+              <svg
+                class="w-5 h-5 text-[var(--accent)]"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                ></path>
               </svg>
-              <span class="text-sm">+48 123 456 789</span>
+              <span class="text-sm">+48 791 334 999</span>
             </a>
           </li>
           <li>
@@ -105,27 +117,62 @@ const services = [
               href="mailto:kontakt@haris-instal.pl"
               class="flex items-center gap-3 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200"
             >
-              <svg class="w-5 h-5 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              <svg
+                class="w-5 h-5 text-[var(--accent)]"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                ></path>
               </svg>
               <span class="text-sm">kontakt@haris-instal.pl</span>
             </a>
           </li>
           <li>
             <div class="flex items-start gap-3 text-[var(--text-secondary)]">
-              <svg class="w-5 h-5 text-[var(--accent)] mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              <svg
+                class="w-5 h-5 text-[var(--accent)] mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
               </svg>
-              <span class="text-sm">Sosnowiec i okolice</span>
+              <span class="text-sm">ul. Szkolna 17<br />Ostrów Mazowiecka</span>
             </div>
           </li>
           <li>
             <div class="flex items-start gap-3 text-[var(--text-secondary)]">
-              <svg class="w-5 h-5 text-[var(--accent)] mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              <svg
+                class="w-5 h-5 text-[var(--accent)] mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
-              <span class="text-sm">Pon-Pt: 8:00-18:00<br/>Sob: 9:00-14:00<br/>Awarie: 24/7</span>
+              <span class="text-sm"
+                >Pon-Pt: 8:00-18:00<br />Sob: 9:00-14:00<br />Awarie: 24/7</span
+              >
             </div>
           </li>
         </ul>
@@ -135,11 +182,21 @@ const services = [
 
   <!-- Copyright bar -->
   <div class="border-t border-[var(--border-color)]">
-    <div class="container-custom py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[var(--text-secondary)]">
+    <div
+      class="container-custom py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[var(--text-secondary)]"
+    >
       <p>&copy; {currentYear} Haris-Instal. Wszelkie prawa zastrzeżone.</p>
       <div class="flex gap-6">
-        <a href="#" class="hover:text-[var(--accent)] transition-colors duration-200">Polityka prywatności</a>
-        <a href="#" class="hover:text-[var(--accent)] transition-colors duration-200">Regulamin</a>
+        <a
+          href="#"
+          class="hover:text-[var(--accent)] transition-colors duration-200"
+          >Polityka prywatności</a
+        >
+        <a
+          href="#"
+          class="hover:text-[var(--accent)] transition-colors duration-200"
+          >Regulamin</a
+        >
       </div>
     </div>
   </div>

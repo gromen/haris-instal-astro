@@ -38,13 +38,13 @@ const navLinks = [
             <a
               href={link.href}
               class:list={[
-                "px-4 py-2 rounded-lg font-medium transition-colors duration-200",
+                "dark:text-black px-4 py-2 rounded-lg font-medium transition-colors duration-200",
                 (
                   currentPath === link.href ||
                   (link.href !== "/" && currentPath.startsWith(link.href))
                 ) ?
-                  "text-[var(--accent)] bg-[var(--bg-card)]"
-                : "text-[var(--text-primary)] hover:text-[var(--accent)] hover:bg-[var(--bg-card)]",
+                  "dark:text-[var(--text-primary)] text-[var(--accent)] bg-[var(--bg-card)]"
+                : "text-[var(--text-primary)] hover:dark:text-[var(--text-primary)] hover:bg-[var(--bg-card)]",
               ]}
             >
               {link.label}
@@ -58,7 +58,7 @@ const navLinks = [
         <ThemeToggle />
 
         <!-- Phone CTA (desktop only) -->
-        <a href="tel:+48123456789" class="hidden lg:flex btn-primary text-sm">
+        <a href="tel:+48791334999" class="hidden lg:flex btn-primary text-sm">
           <svg
             class="w-4 h-4 mr-2"
             fill="none"

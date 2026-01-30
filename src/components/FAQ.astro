@@ -1,8 +1,11 @@
 ---
-const faqs = [
+import { getCollection } from 'astro:content';
+
+// Default FAQs (fallback)
+const defaultFaqs = [
   {
     question: 'Jak szybko możecie przyjechać w razie awarii?',
-    answer: 'W przypadku pilnych awarii staramy się dotrzeć w ciągu 1-2 godzin na terenie Sosnowca i okolic. Działamy 24/7, więc możesz dzwonić o każdej porze.',
+    answer: 'W przypadku pilnych awarii staramy się dotrzeć w ciągu 1-2 godzin na terenie Ostrowi Mazowieckiej i okolic. Działamy 24/7, więc możesz dzwonić o każdej porze.',
   },
   {
     question: 'Czy udzielacie gwarancji na wykonane prace?',
@@ -10,7 +13,7 @@ const faqs = [
   },
   {
     question: 'Jakie są koszty dojazdu?',
-    answer: 'Dojazd na terenie Sosnowca jest bezpłatny. Dla lokalizacji poza miastem doliczamy symboliczną opłatę zależną od odległości, o której informujemy przed przyjazdem.',
+    answer: 'Dojazd na terenie Ostrowi Mazowieckiej jest bezpłatny. Dla lokalizacji poza miastem doliczamy symboliczną opłatę zależną od odległości, o której informujemy przed przyjazdem.',
   },
   {
     question: 'Czy wystawiacie faktury VAT?',
@@ -25,6 +28,23 @@ const faqs = [
     answer: 'Najprościej zadzwonić pod nasz numer telefonu lub wypełnić formularz kontaktowy na stronie. Oddzwonimy i ustalimy dogodny termin wizyty.',
   },
 ];
+
+// Try to get FAQs from content collection
+let faqs = defaultFaqs;
+try {
+  const faqEntries = await getCollection('faq');
+  if (faqEntries.length > 0) {
+    faqs = faqEntries
+      .map(entry => ({
+        question: entry.data.question,
+        answer: entry.data.answer,
+        order: entry.data.order || 0,
+      }))
+      .sort((a, b) => a.order - b.order);
+  }
+} catch (e) {
+  // Use default FAQs if collection fails
+}
 ---
 
 <section id="faq" class="section-padding">
