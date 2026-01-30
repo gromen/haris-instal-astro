@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme (default) */
+    --bg-primary: #fafafa;
+    --bg-secondary: #ffffff;
+    --bg-card: #f5f5f5;
+    --text-primary: #171717;
+    --text-secondary: #525252;
+    --accent: #92400e;
+    --accent-light: #b87333;
+    --accent-gold: #c9a227;
+    --border-color: #e5e5e5;
+  }
+
+  [data-theme='dark'] {
+    --bg-primary: #0f0f0f;
+    --bg-secondary: #1a1a1a;
+    --bg-card: #252525;
+    --text-primary: #f5f5f5;
+    --text-secondary: #a3a3a3;
+    --accent: #b87333;
+    --accent-light: #d4a574;
+    --accent-gold: #c9a227;
+    --border-color: #333333;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-semibold;
+  }
+
+  /* Custom scrollbar for dark theme */
+  [data-theme='dark'] ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  [data-theme='dark'] ::-webkit-scrollbar-track {
+    background: #1a1a1a;
+  }
+
+  [data-theme='dark'] ::-webkit-scrollbar-thumb {
+    background: #404040;
+    border-radius: 4px;
+  }
+
+  [data-theme='dark'] ::-webkit-scrollbar-thumb:hover {
+    background: #525252;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 font-semibold text-white rounded-lg transition-all duration-300;
+    background: linear-gradient(135deg, #b87333 0%, #c9a227 100%);
+  }
+
+  .btn-primary:hover {
+    @apply shadow-glow scale-105;
+    background: linear-gradient(135deg, #d4a574 0%, #dbb94a 100%);
+  }
+
+  .card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    @apply rounded-xl p-6 transition-all duration-300;
+  }
+
+  .card-hover:hover {
+    @apply shadow-glow;
+    transform: scale(1.02);
+    border-color: var(--accent);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #b87333 0%, #c9a227 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glassmorphism {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  [data-theme='dark'] .glassmorphism {
+    background: rgba(26, 26, 26, 0.8);
+  }
+
+  [data-theme='light'] .glassmorphism,
+  :root .glassmorphism {
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Copper border accent */
+  .border-accent {
+    border-color: var(--accent);
+  }
+
+  /* Section title styling */
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-4;
+  }
+
+  .section-subtitle {
+    color: var(--text-secondary);
+    @apply text-lg max-w-2xl mx-auto;
+  }
+
+  /* Link styling */
+  .link-copper {
+    color: var(--accent);
+    @apply transition-colors duration-200;
+  }
+
+  .link-copper:hover {
+    color: var(--accent-light);
+  }
+
+  /* Gradient backgrounds */
+  .bg-gradient-copper {
+    background: linear-gradient(135deg, #b87333 0%, #c9a227 100%);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

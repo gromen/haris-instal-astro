@@ -1,0 +1,66 @@
+backend:
+  name: git-gateway
+  branch: main
+
+locale: 'pl'
+
+media_folder: 'public/images/uploads'
+public_folder: '/images/uploads'
+
+collections:
+  # Site settings
+  - name: 'settings'
+    label: 'Ustawienia strony'
+    files:
+      - name: 'hero'
+        label: 'Sekcja Hero'
+        file: 'src/content/settings/hero.json'
+        fields:
+          - { name: 'title', label: 'Tytuł główny', widget: 'string', default: 'Profesjonalne usługi hydrauliczne' }
+          - { name: 'subtitle', label: 'Podtytuł', widget: 'text', default: 'Zaufaj ekspertom z wieloletnim doświadczeniem.' }
+          - { name: 'backgroundImage', label: 'Zdjęcie tła', widget: 'image', required: false }
+          - { name: 'phone', label: 'Numer telefonu', widget: 'string', default: '+48 123 456 789' }
+
+  # Projects/Portfolio
+  - name: 'projekty'
+    label: 'Projekty'
+    label_singular: 'Projekt'
+    folder: 'src/content/projekty'
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - { name: 'title', label: 'Tytuł', widget: 'string' }
+      - { name: 'date', label: 'Data realizacji', widget: 'datetime', format: 'YYYY-MM-DD' }
+      - { name: 'description', label: 'Krótki opis', widget: 'text', required: false }
+      - { name: 'thumbnail', label: 'Zdjęcie główne', widget: 'image', required: false }
+      - name: 'gallery'
+        label: 'Galeria'
+        widget: 'list'
+        required: false
+        field: { name: 'image', label: 'Zdjęcie', widget: 'image' }
+      - { name: 'body', label: 'Treść', widget: 'markdown' }
+
+  # Testimonials
+  - name: 'testimonials'
+    label: 'Opinie klientów'
+    label_singular: 'Opinia'
+    folder: 'src/content/testimonials'
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - { name: 'name', label: 'Imię i nazwisko', widget: 'string' }
+      - { name: 'location', label: 'Miejscowość', widget: 'string' }
+      - { name: 'text', label: 'Treść opinii', widget: 'text' }
+      - { name: 'rating', label: 'Ocena (1-5)', widget: 'number', min: 1, max: 5, default: 5 }
+
+  # FAQ
+  - name: 'faq'
+    label: 'FAQ'
+    label_singular: 'Pytanie'
+    folder: 'src/content/faq'
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - { name: 'question', label: 'Pytanie', widget: 'string' }
+      - { name: 'answer', label: 'Odpowiedź', widget: 'text' }
+      - { name: 'order', label: 'Kolejność', widget: 'number', default: 0 }

@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projekty = await getCollection('projekty');
+  return projekty.map((projekt) => ({
+    params: { slug: projekt.slug },
+    props: { projekt },
+  }));
+}
+
+interface Props {
+  projekt: CollectionEntry<'projekty'>;
+}
+
+const { projekt } = Astro.props;
+const { Content } = await projekt.render();
+---
+
+<BaseLayout
+  title={projekt.data.title}
+  description={projekt.data.description || `Realizacja projektu: ${projekt.data.title}`}
+  ogImage={projekt.data.thumbnail}
+  noIndex={true}
+>
+  <Header />
+
+  <main>
+    <!-- Back link -->
+    <div class="container-custom pt-8">
+      <a href="/projekty" class="inline-flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Wróć do projektów
+      </a>
+    </div>
+
+    <!-- Hero image -->
+    {projekt.data.thumbnail && (
+      <section class="container-custom py-8">
+        <div class="aspect-video rounded-xl overflow-hidden">
+          <img
+            src={projekt.data.thumbnail}
+            alt={projekt.data.title}
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </section>
+    )}
+
+    <!-- Content -->
+    <article class="container-custom pb-16">
+      <div class="max-w-3xl mx-auto">
+        <!-- Meta -->
+        <div class="flex items-center gap-4 text-sm text-[var(--text-secondary)] mb-4">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            <time datetime={projekt.data.date}>
+              {new Date(projekt.data.date).toLocaleDateString('pl-PL', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </time>
+          </div>
+        </div>
+
+        <!-- Title -->
+        <h1 class="text-3xl md:text-4xl font-bold mb-6">{projekt.data.title}</h1>
+
+        <!-- Description -->
+        {projekt.data.description && (
+          <p class="text-lg text-[var(--text-secondary)] mb-8">
+            {projekt.data.description}
+          </p>
+        )}
+
+        <!-- Content -->
+        <div class="prose prose-lg max-w-none
+          prose-headings:text-[var(--text-primary)]
+          prose-p:text-[var(--text-secondary)]
+          prose-a:text-[var(--accent)] prose-a:no-underline hover:prose-a:underline
+          prose-strong:text-[var(--text-primary)]
+          prose-ul:text-[var(--text-secondary)]
+          prose-ol:text-[var(--text-secondary)]
+        ">
+          <Content />
+        </div>
+
+        <!-- Gallery -->
+        {projekt.data.gallery && projekt.data.gallery.length > 0 && (
+          <div class="mt-12">
+            <h2 class="text-2xl font-bold mb-6">Galeria</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {projekt.data.gallery.map((image: string, index: number) => (
+                <div class="aspect-square rounded-lg overflow-hidden">
+                  <img
+                    src={image}
+                    alt={`${projekt.data.title} - zdjęcie ${index + 1}`}
+                    class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </article>
+
+    <!-- CTA -->
+    <section class="section-padding bg-[var(--bg-secondary)]">
+      <div class="container-custom text-center">
+        <h2 class="text-2xl font-bold mb-4">Zainteresowany podobnym projektem?</h2>
+        <p class="text-[var(--text-secondary)] mb-8">
+          Skontaktuj się z nami, a przygotujemy bezpłatną wycenę.
+        </p>
+        <a href="/kontakt" class="btn-primary">
+          Zamów wycenę
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,160 @@
+---
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const navLinks = [
+  { href: '/', label: 'Strona główna' },
+  { href: '/#uslugi', label: 'Usługi' },
+  { href: '/#dlaczego-my', label: 'Dlaczego my' },
+  { href: '/#opinie', label: 'Opinie' },
+  { href: '/#faq', label: 'FAQ' },
+  { href: '/kontakt', label: 'Kontakt' },
+];
+---
+
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-40 hidden"
+  aria-hidden="true"
+>
+  <!-- Backdrop -->
+  <div
+    id="mobile-menu-backdrop"
+    class="absolute inset-0 bg-black/50 backdrop-blur-sm"
+  >
+  </div>
+
+  <!-- Menu panel -->
+  <nav
+    id="mobile-menu-panel"
+    class="absolute top-[72px] left-0 right-0 bg-[var(--bg-secondary)] border-b border-[var(--border-color)] transform -translate-y-full transition-transform duration-300 ease-out"
+  >
+    <ul class="container-custom py-4 space-y-1">
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class:list={[
+                'block py-3 px-4 rounded-lg transition-colors duration-200',
+                currentPath === link.href ||
+                (link.href !== '/' && currentPath.startsWith(link.href))
+                  ? 'text-[var(--accent)] bg-[var(--bg-card)]'
+                  : 'text-[var(--text-primary)] hover:bg-[var(--bg-card)] hover:text-[var(--accent)]',
+              ]}
+              data-mobile-nav-link
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <!-- Phone CTA in mobile menu -->
+    <div class="container-custom pb-4">
+      <a
+        href="tel:+48123456789"
+        class="btn-primary w-full text-center"
+      >
+        <svg
+          class="w-5 h-5 mr-2"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+          ></path>
+        </svg>
+        Zadzwoń teraz
+      </a>
+    </div>
+  </nav>
+</div>
+
+<script>
+  function initMobileMenu() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+    const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
+    const hamburgerButton = document.getElementById('hamburger-button');
+    const navLinks = document.querySelectorAll('[data-mobile-nav-link]');
+
+    let isOpen = false;
+
+    function openMenu() {
+      isOpen = true;
+      mobileMenu?.classList.remove('hidden');
+      mobileMenu?.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+
+      // Trigger animation after display change
+      requestAnimationFrame(() => {
+        mobileMenuPanel?.classList.remove('-translate-y-full');
+        mobileMenuPanel?.classList.add('translate-y-0');
+      });
+
+      hamburgerButton?.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeMenu() {
+      isOpen = false;
+      mobileMenuPanel?.classList.remove('translate-y-0');
+      mobileMenuPanel?.classList.add('-translate-y-full');
+      hamburgerButton?.setAttribute('aria-expanded', 'false');
+
+      // Hide after animation completes
+      setTimeout(() => {
+        mobileMenu?.classList.add('hidden');
+        mobileMenu?.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }, 300);
+    }
+
+    function toggleMenu() {
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    }
+
+    // Toggle button handler
+    hamburgerButton?.addEventListener('click', toggleMenu);
+
+    // Close on backdrop click
+    mobileMenuBackdrop?.addEventListener('click', closeMenu);
+
+    // Close on nav link click
+    navLinks.forEach((link) => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen) {
+        closeMenu();
+      }
+    });
+
+    // Close on resize to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768 && isOpen) {
+        closeMenu();
+      }
+    });
+  }
+
+  // Run on initial load
+  initMobileMenu();
+
+  // Re-run on Astro page transitions
+  document.addEventListener('astro:after-swap', initMobileMenu);
+</script>
