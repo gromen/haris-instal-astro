@@ -12,7 +12,6 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/#uslugi", label: "Usługi" },
   { href: "/#dlaczego-my", label: "Dlaczego my" },
-  { href: "/#opinie", label: "Opinie" },
   { href: "/kontakt", label: "Kontakt" },
 ];
 ---
@@ -37,15 +36,7 @@ const navLinks = [
           navLinks.map((link) => (
             <a
               href={link.href}
-              class:list={[
-                "dark:text-black px-4 py-2 rounded-lg font-medium transition-colors duration-200",
-                (
-                  currentPath === link.href ||
-                  (link.href !== "/" && currentPath.startsWith(link.href))
-                ) ?
-                  "dark:text-[var(--text-primary)] text-[var(--accent)] bg-[var(--bg-card)]"
-                : "text-[var(--text-primary)] hover:dark:text-[var(--text-primary)] hover:bg-[var(--bg-card)]",
-              ]}
+              class="text-black px-4 py-2 hover:text-white rounded-lg hover:bg-black font-medium transition-colors duration-200"
             >
               {link.label}
             </a>
@@ -79,7 +70,7 @@ const navLinks = [
         <button
           id="hamburger-button"
           type="button"
-          class="md:hidden p-2 rounded-lg transition-colors duration-200 hover:bg-[var(--bg-card)]"
+          class="md:hidden p-2 rounded-lg transition-colors duration-200 text-black hover:text-white hover:bg-black"
           aria-label="Otwórz menu"
           aria-expanded="false"
           aria-controls="mobile-menu"

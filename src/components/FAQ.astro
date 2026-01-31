@@ -1,33 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 
-// Default FAQs (fallback)
-const defaultFaqs = [
-  {
-    question: 'Jak szybko możecie przyjechać w razie awarii?',
-    answer: 'W przypadku pilnych awarii staramy się dotrzeć w ciągu 1-2 godzin na terenie Ostrowi Mazowieckiej i okolic. Działamy 24/7, więc możesz dzwonić o każdej porze.',
-  },
-  {
-    question: 'Czy udzielacie gwarancji na wykonane prace?',
-    answer: 'Tak, na wszystkie wykonane przez nas prace udzielamy gwarancji od 12 do 24 miesięcy, w zależności od rodzaju usługi. Gwarancja obejmuje zarówno robociznę, jak i użyte materiały.',
-  },
-  {
-    question: 'Jakie są koszty dojazdu?',
-    answer: 'Dojazd na terenie Ostrowi Mazowieckiej jest bezpłatny. Dla lokalizacji poza miastem doliczamy symboliczną opłatę zależną od odległości, o której informujemy przed przyjazdem.',
-  },
-  {
-    question: 'Czy wystawiacie faktury VAT?',
-    answer: 'Tak, wystawiamy faktury VAT dla firm oraz rachunki dla klientów indywidualnych. Dokumenty możemy przesłać elektronicznie lub przekazać osobiście.',
-  },
-  {
-    question: 'Czy wykonujecie przeglądy okresowe instalacji gazowych?',
-    answer: 'Tak, posiadamy wszystkie wymagane uprawnienia do wykonywania przeglądów instalacji gazowych. Wystawiamy protokoły potrzebne do zarządcy lub spółdzielni.',
-  },
-  {
-    question: 'Jak mogę umówić wizytę?',
-    answer: 'Najprościej zadzwonić pod nasz numer telefonu lub wypełnić formularz kontaktowy na stronie. Oddzwonimy i ustalimy dogodny termin wizyty.',
-  },
-];
+// Default FAQs (fallback if no content in CMS)
+const defaultFaqs: Array<{question: string; answer: string; order?: number}> = [];
 
 // Try to get FAQs from content collection
 let faqs = defaultFaqs;
