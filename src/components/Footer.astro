@@ -1,4 +1,6 @@
 ---
+import { siteConfig } from "../config/site";
+
 const currentYear = new Date().getFullYear();
 
 const navLinks = [
@@ -38,7 +40,7 @@ const services = [
         <!-- Social links placeholder -->
         <div class="flex gap-4">
           <a
-            href="#"
+            href={siteConfig.social.facebook}
             class="w-10 h-10 rounded-full bg-[var(--bg-card)] flex items-center justify-center hover:bg-[var(--accent)]/20 hover:text-[var(--accent)] transition-colors duration-200"
             aria-label="Facebook"
           >
@@ -92,7 +94,7 @@ const services = [
         <ul class="space-y-4">
           <li>
             <a
-              href="tel:+48791334999"
+              href={siteConfig.contact.phone.href}
               class="flex items-center gap-3 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200"
             >
               <svg
@@ -108,12 +110,12 @@ const services = [
                   d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                 ></path>
               </svg>
-              <span class="text-sm">+48 791 334 999</span>
+              <span class="text-sm">{siteConfig.contact.phone.display}</span>
             </a>
           </li>
           <li>
             <a
-              href="mailto:kontakt@haris-instal.pl"
+              href={`mailto:${siteConfig.contact.email.primary}`}
               class="flex items-center gap-3 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200"
             >
               <svg
@@ -129,7 +131,7 @@ const services = [
                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 ></path>
               </svg>
-              <span class="text-sm">kontakt@haris-instal.pl</span>
+              <span class="text-sm">{siteConfig.contact.email.primary}</span>
             </a>
           </li>
           <li>
@@ -152,7 +154,7 @@ const services = [
                   stroke-width="2"
                   d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
               </svg>
-              <span class="text-sm">ul. Szkolna 17<br />Ostrów Mazowiecka</span>
+              <span class="text-sm">{siteConfig.address.street}<br />{siteConfig.address.city}</span>
             </div>
           </li>
           <li>
@@ -170,7 +172,7 @@ const services = [
                   d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
               <span class="text-sm"
-                >Pon-Pt: 8:00-18:00<br />Sob: 9:00-14:00<br />Awarie: 24/7</span
+                >Pon-Pt: {siteConfig.hours.weekdays}<br />Sob: {siteConfig.hours.saturday}<br />Awarie: {siteConfig.hours.emergency}</span
               >
             </div>
           </li>

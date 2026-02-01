@@ -1,6 +1,7 @@
 ---
 import MobileMenu from "./MobileMenu.astro";
 import ThemeToggle from "./ThemeToggle.astro";
+import { siteConfig } from "../config/site";
 
 interface Props {
   currentPath?: string;
@@ -49,7 +50,7 @@ const navLinks = [
         <ThemeToggle />
 
         <!-- Phone CTA (desktop only) -->
-        <a href="tel:+48791334999" class="hidden lg:flex btn-primary text-sm">
+        <a href={siteConfig.contact.phone.href} class="hidden lg:flex btn-primary text-sm">
           <svg
             class="w-4 h-4 mr-2"
             fill="none"

@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Map from '../components/Map.astro';
 import Footer from '../components/Footer.astro';
+import { siteConfig } from '../config/site';
 ---
 
 <BaseLayout title="Kontakt" description="Skontaktuj się z Haris-Instal. Profesjonalne usługi hydrauliczne w Ostrowi Mazowieckiej i okolicach. Zadzwoń lub napisz!">
@@ -28,26 +29,26 @@ import Footer from '../components/Footer.astro';
       <div class="container-custom">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 -mt-12">
           <!-- Phone -->
-          <a href="tel:+48791334999" class="card card-hover text-center">
+          <a href={siteConfig.contact.phone.href} class="card card-hover text-center">
             <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-copper flex items-center justify-center">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
               </svg>
             </div>
             <h3 class="font-semibold mb-1">Zadzwoń</h3>
-            <p class="text-[var(--accent)] font-medium">+48 791 334 999</p>
-            <p class="text-sm text-[var(--text-secondary)] mt-1">Awarie 24/7</p>
+            <p class="text-[var(--accent)] font-medium">{siteConfig.contact.phone.display}</p>
+            <p class="text-sm text-[var(--text-secondary)] mt-1">Awarie {siteConfig.hours.emergency}</p>
           </a>
 
           <!-- Email -->
-          <a href="mailto:kontakt@haris-instal.pl" class="card card-hover text-center">
+          <a href={`mailto:${siteConfig.contact.email.primary}`} class="card card-hover text-center">
             <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-copper flex items-center justify-center">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
               </svg>
             </div>
             <h3 class="font-semibold mb-1">Napisz email</h3>
-            <p class="text-[var(--accent)] font-medium">kontakt@haris-instal.pl</p>
+            <p class="text-[var(--accent)] font-medium">{siteConfig.contact.email.primary}</p>
             <p class="text-sm text-[var(--text-secondary)] mt-1">Odpowiadamy w 24h</p>
           </a>
 
@@ -60,8 +61,8 @@ import Footer from '../components/Footer.astro';
               </svg>
             </div>
             <h3 class="font-semibold mb-1">Obszar działania</h3>
-            <p class="text-[var(--accent)] font-medium">Ostrów Mazowiecka</p>
-            <p class="text-sm text-[var(--text-secondary)] mt-1">ul. Szkolna 17</p>
+            <p class="text-[var(--accent)] font-medium">{siteConfig.address.city}</p>
+            <p class="text-sm text-[var(--text-secondary)] mt-1">{siteConfig.address.street}</p>
           </div>
         </div>
       </div>
@@ -91,19 +92,19 @@ import Footer from '../components/Footer.astro';
               <ul class="space-y-3">
                 <li class="flex justify-between items-center py-2 border-b border-[var(--border-color)]">
                   <span class="text-[var(--text-secondary)]">Poniedziałek - Piątek</span>
-                  <span class="font-medium">8:00 - 18:00</span>
+                  <span class="font-medium">{siteConfig.hours.weekdays}</span>
                 </li>
                 <li class="flex justify-between items-center py-2 border-b border-[var(--border-color)]">
                   <span class="text-[var(--text-secondary)]">Sobota</span>
-                  <span class="font-medium">9:00 - 14:00</span>
+                  <span class="font-medium">{siteConfig.hours.saturday}</span>
                 </li>
                 <li class="flex justify-between items-center py-2 border-b border-[var(--border-color)]">
                   <span class="text-[var(--text-secondary)]">Niedziela</span>
-                  <span class="font-medium text-[var(--text-secondary)]">Zamknięte</span>
+                  <span class="font-medium text-[var(--text-secondary)]">{siteConfig.hours.sunday}</span>
                 </li>
                 <li class="flex justify-between items-center py-2">
                   <span class="text-[var(--accent)] font-medium">Dyżur awaryjny</span>
-                  <span class="font-bold text-[var(--accent)]">24/7</span>
+                  <span class="font-bold text-[var(--accent)]">{siteConfig.hours.emergency}</span>
                 </li>
               </ul>
             </div>

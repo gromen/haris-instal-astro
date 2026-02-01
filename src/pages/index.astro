@@ -8,6 +8,7 @@ import Map from "../components/Map.astro";
 import Services from "../components/Services.astro";
 import WhyUs from "../components/WhyUs.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteConfig } from "../config/site";
 ---
 
 <BaseLayout
@@ -51,7 +52,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               <ul class="space-y-4">
                 <li>
                   <a
-                    href="tel:+48791334999"
+                    href={siteConfig.contact.phone.href}
                     class="flex items-center gap-3 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200"
                   >
                     <div
@@ -76,14 +77,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                         Telefon
                       </p>
                       <p class="font-medium text-[var(--text-primary)]">
-                        +48 791 334 999
+                        {siteConfig.contact.phone.display}
                       </p>
                     </div>
                   </a>
                 </li>
                 <li>
                   <a
-                    href="mailto:kontakt@haris-instal.pl"
+                    href={`mailto:${siteConfig.contact.email.secondary}`}
                     class="flex items-center gap-3 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200"
                   >
                     <div
@@ -106,7 +107,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                     <div>
                       <p class="text-sm text-[var(--text-secondary)]">Email</p>
                       <p class="font-medium text-[var(--text-primary)]">
-                        kontakt@haris-instal.pl
+                        {siteConfig.contact.email.secondary}
                       </p>
                     </div>
                   </a>
@@ -135,7 +136,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                         Godziny pracy
                       </p>
                       <p class="font-medium text-[var(--text-primary)]">
-                        Pon-Pt: 8:00-18:00 | Awarie: 24/7
+                        Pon-Pt: {siteConfig.hours.weekdays} | Awarie: {siteConfig.hours.emergency}
                       </p>
                     </div>
                   </div>

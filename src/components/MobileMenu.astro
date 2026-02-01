@@ -1,4 +1,6 @@
 ---
+import { siteConfig } from "../config/site";
+
 interface Props {
   currentPath: string;
 }
@@ -57,7 +59,7 @@ const navLinks = [
     <!-- Phone CTA in mobile menu -->
     <div class="container-custom pb-4">
       <a
-        href="tel:+48791334999"
+        href={siteConfig.contact.phone.href}
         class="btn-primary w-full text-center"
       >
         <svg

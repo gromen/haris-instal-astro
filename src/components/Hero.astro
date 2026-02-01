@@ -1,4 +1,6 @@
 ---
+import { siteConfig } from "../config/site";
+
 interface Props {
   title?: string;
   subtitle?: string;
@@ -11,8 +13,7 @@ const {
   backgroundImage = "/images/slide-1.webp",
 } = Astro.props;
 
-const phone = "+48 791 334 999";
-const phoneHref = "tel:+48791334999";
+const { display: phone, href: phoneHref } = siteConfig.contact.phone;
 ---
 
 <section
