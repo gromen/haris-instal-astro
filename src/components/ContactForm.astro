@@ -179,7 +179,11 @@
 
 <script>
   // Declare gtag for TypeScript
-  declare function gtag(...args: unknown[]): void;
+  declare global {
+    interface Window {
+      gtag?: (...args: unknown[]) => void;
+    }
+  }
 
   function initContactForm() {
     const form = document.getElementById("contact-form") as HTMLFormElement;
@@ -263,9 +267,9 @@
           successMessage?.classList.remove("hidden");
 
           // Track form submission in Google Analytics
-          if (typeof gtag === "function") {
+          if (typeof window.gtag === "function") {
             console.log("Sending event to Google Analytics");
-            gtag("event", "contact_form_submit", {
+            window.gtag("event", "contact_form_submit", {
               event_category: "engagement",
               event_label: data.service || "not_specified",
             });
