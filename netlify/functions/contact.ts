@@ -74,7 +74,7 @@ const handler: Handler = async (
       </div>
       <hr style="margin-top: 30px; border: none; border-top: 1px solid #ddd;">
       <p style="color: #666; font-size: 12px;">
-        Wiadomość wysłana przez formularz na stronie gravaris.pl
+        Wiadomość wysłana przez formularz na stronie haris-instal.pl
       </p>
     </div>
   `;
