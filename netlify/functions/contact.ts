@@ -1,4 +1,4 @@
-import type { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
+import type { Handler, HandlerContext, HandlerEvent } from "@netlify/functions";
 import { siteConfig } from "../../src/config/site";
 
 interface ContactFormData {
@@ -42,7 +42,8 @@ const handler: Handler = async (
 
   // Get environment variables
   const RESEND_API_KEY = process.env.RESEND_API_KEY;
-  const CONTACT_EMAIL = process.env.CONTACT_EMAIL || siteConfig.contact.email.primary;
+  const CONTACT_EMAIL =
+    process.env.CONTACT_EMAIL || siteConfig.contact.email.primary;
 
   // If no API key, log and return success (for testing)
   if (!RESEND_API_KEY) {
@@ -89,7 +90,7 @@ ${data.message}
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: `${siteConfig.name} <${siteConfig.contact.email.noreply}>`,
+        from: `${siteConfig.name} <${siteConfig.contact.email.primary}>`,
         to: [CONTACT_EMAIL],
         subject: `Nowe zapytanie: ${data.service || "Kontakt"} - ${data.name}`,
         html: emailHtml,

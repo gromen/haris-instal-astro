@@ -12,8 +12,6 @@ export const siteConfig = {
     },
     email: {
       primary: "haris.instal@onet.pl",
-      secondary: "kontakt@haris-instal.pl",
-      noreply: "noreply@haris-instal.pl",
     },
   },
 
