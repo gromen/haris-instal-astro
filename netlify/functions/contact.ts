@@ -90,7 +90,7 @@ ${data.message}
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: `${siteConfig.name} <${siteConfig.contact.email.primary}>`,
+        from: `${siteConfig.name} <kontakt@haris-instal.pl>`,
         to: [CONTACT_EMAIL],
         subject: `Nowe zapytanie: ${data.service || "Kontakt"} - ${data.name}`,
         html: emailHtml,
