@@ -60,13 +60,23 @@ const handler: Handler = async (
 
   // Build email content
   const emailHtml = `
-    <h2>Nowa wiadomość z formularza kontaktowego</h2>
-    <p><strong>Imię i nazwisko:</strong> ${data.name}</p>
-    <p><strong>Telefon:</strong> ${data.phone}</p>
-    ${data.email ? `<p><strong>Email:</strong> ${data.email}</p>` : ""}
-    ${data.service ? `<p><strong>Rodzaj usługi:</strong> ${data.service}</p>` : ""}
-    <p><strong>Wiadomość:</strong></p>
-    <p>${data.message.replace(/\n/g, "<br>")}</p>
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h2 style="color: #FFC107; border-bottom: 2px solid #FFC107; padding-bottom: 10px;">
+        Nowa wiadomość z formularza kontaktowego
+      </h2>
+      <p><strong>Imię:</strong> ${data.name}</p>
+      <p><strong>Email:</strong> <a href="mailto:${data.email}">${data.email}</a></p>
+      <p><strong>Telefon:</strong> ${data.phone}</p>
+      <p><strong>Rodzaj usługi:</strong> ${data.service}</p>
+      <p><strong>Wiadomość:</strong></p>
+      <div style="background: #f5f5f5; padding: 15px; border-left: 3px solid #FFC107;">
+        ${data.message.replace(/\n/g, "<br>")}
+      </div>
+      <hr style="margin-top: 30px; border: none; border-top: 1px solid #ddd;">
+      <p style="color: #666; font-size: 12px;">
+        Wiadomość wysłana przez formularz na stronie gravaris.pl
+      </p>
+    </div>
   `;
 
   const emailText = `
