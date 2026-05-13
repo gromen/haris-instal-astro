@@ -37,7 +37,7 @@ const navLinks = [
           navLinks.map((link) => (
             <a
               href={link.href}
-              class="text-black px-4 py-2 hover:text-white rounded-lg hover:bg-black font-medium transition-colors duration-200"
+              class="relative px-4 py-2 rounded-lg font-medium transition-all duration-200 text-[var(--text-primary)] hover:text-white hover:[background:linear-gradient(135deg,#173d8d_0%,#2d6de0_100%)] hover:shadow-md"
             >
               {link.label}
             </a>
@@ -74,22 +74,18 @@ const navLinks = [
         <button
           id="hamburger-button"
           type="button"
-          class="md:hidden p-2 rounded-lg transition-colors duration-200 text-black hover:text-white hover:bg-black"
+          class="md:hidden p-2 rounded-lg transition-all duration-200 text-black hover:text-white hover:bg-black"
           aria-label="Otwórz menu"
           aria-expanded="false"
           aria-controls="mobile-menu"
         >
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"></path>
+          <!-- Hamburger icon (shown when closed) -->
+          <svg class="w-6 h-6 block [[aria-expanded=true]_&]:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <!-- X icon (shown when open) -->
+          <svg class="w-6 h-6 hidden [[aria-expanded=true]_&]:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
       </div>
